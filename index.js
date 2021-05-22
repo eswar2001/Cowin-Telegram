@@ -1,9 +1,13 @@
-const TelegramBot = require('node-telegram-bot-api');
 const axios = require('axios');
 const nodemailer = require("nodemailer");
 
-const token = '1871483695:AAGZ6bZIrGOMYoQ8Miffj9hJusXXouyZBjY';
-const bot = new TelegramBot(token, { polling: true });
+var TelegramBot = require('node-telegram-bot-api'),
+    port = process.env.PORT || 443,
+    externalUrl = process.env.CUSTOM_ENV_VARIABLE || 'https://cowintelegram.herokuapp.com/',
+    token = process.env.TOKEN,
+    bot = new TelegramBot(process.env.TOKEN, { webHook: { port: port, host: host }, polling: true });
+bot.setWebHook(externalUrl + ':443/bot' + token);
+
 var baseurl = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?';
 
 const isNumber = (n) => { return /^-?[\d.]+(?:e-?\d+)?$/.test(n); }
