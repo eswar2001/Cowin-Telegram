@@ -19,7 +19,9 @@
   "dependencies": {
     "axios": "^0.21.1",
     "cron": "^1.8.2",
+    "jsonfile": "^6.1.0",
     "micro-bot": "^2.5.3",
+    "node-cron": "^3.0.0",
     "node-telegram-bot-api": "^0.53.0",
     "nodemailer": "^6.6.0"
   },
