@@ -195,10 +195,10 @@ const checkForSLots = () => {
 
 //helpers functions
 
-// cron.schedule('*/45 * * * *', () => {
-//     console.log('running a task every 1 minutes');
-//     checkForSLots();
-// });
+cron.schedule('*/45 * * * *', () => {
+    console.log('running a task every 45 minutes');
+    checkForSLots();
+});
 
 const isNumber = (n) => {
     return /^-?[\d.]+(?:e-?\d+)?$/.test(n);
