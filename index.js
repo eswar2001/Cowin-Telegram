@@ -19,6 +19,7 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 });
 bot.on('message', (msg) => {
     const chatId = msg.chat.id;
+
     if (msg.text == '/start') {
         bot.sendMessage(chatId, 'Hi There, Please send message in this format only ```pincode email true``` \r\n ex: 530046 mail@mail.com true');
     }
@@ -98,7 +99,7 @@ bot.on('message', (msg) => {
                 }
             }).catch((error) => {
                 console.log(error);
-                bot.sendMessage(chatId, error + 'Message format "pincode EmailID"');
+                bot.sendMessage(chatId, msg.text + 'Message format "pincode EmailID"');
             })
 
     }
