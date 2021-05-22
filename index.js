@@ -98,7 +98,7 @@ bot.on('message', (msg) => {
                 }
             }).catch((error) => {
                 console.log(error);
-                bot.sendMessage(chatId, 'Message format "pincode EmailID"');
+                bot.sendMessage(chatId, error + 'Message format "pincode EmailID"');
             })
 
     }
