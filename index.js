@@ -3,9 +3,10 @@ const nodemailer = require("nodemailer");
 
 var TelegramBot = require('node-telegram-bot-api'),
     port = process.env.PORT || 443,
+    host = process.env.host | '0.0.0.0',
     externalUrl = process.env.CUSTOM_ENV_VARIABLE || 'https://cowintelegram.herokuapp.com/',
     token = process.env.TOKEN,
-    bot = new TelegramBot('1871483695:AAGZ6bZIrGOMYoQ8Miffj9hJusXXouyZBjY', { webHook: { port: port, host: host }, polling: true });
+    bot = new TelegramBot('1871483695:AAGZ6bZIrGOMYoQ8Miffj9hJusXXouyZBjY', { webHook: { port: port, host: host } });
 bot.setWebHook(externalUrl + ':443/bot' + token);
 
 var baseurl = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?';
