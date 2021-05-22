@@ -55,8 +55,8 @@ bot.on('message', (msg) => {
                             // console.log(response.data.centers[i].sessions[j]["available_capacity"]);
                             if (response.data.centers[i].sessions[j]["available_capacity"] > 0) {
                                 flag = true;
-                                centerNames += `<b><strong>${response.data.centers[i]["name"]}</strong></b>`;
-                                details += `MinAge Limit: ${response.data.centers[i].sessions[j].min_age_limit} \r\n${response.data.centers[i]["name"]}` + "\r\n BLock Name:" + `${response.data.centers[i]["block_name"]}` + '\r\nAvailable capacity:' +
+                                centerNames += `\r\n\r\n<b><strong>${response.data.centers[i]["name"]}</strong></b>`;
+                                details += `\r\nMinAge Limit: ${response.data.centers[i].sessions[j].min_age_limit} \r\n${response.data.centers[i]["name"]}` + "\r\n BLock Name:" + `${response.data.centers[i]["block_name"]}` + '\r\nAvailable capacity:' +
                                     response.data.centers[i].sessions[j]["available_capacity"].toString();
                                 details += `\r\nAvailable on: ${today.toString()}`;
                                 details += '\r\n slots \r\n';
@@ -71,8 +71,9 @@ bot.on('message', (msg) => {
                         }
                         if (flag && response.data.centers[i]["fee_type"] == "Paid") {
                             for (j = 0; j < Object.keys(response.data.centers[i]["vaccine_fees"]).length; j++) {
-                                details += `${response.data.centers[i].vaccine_fees[j].vaccine} Price: ${response.data.centers[i]["vaccine_fees"][j]["fee"]}`;
+                                details += `${response.data.centers[i].vaccine_fees[j].vaccine} Price: ${response.data.centers[i]["vaccine_fees"][j]["fee"]}\r\n\r\n`;
                             }
+                            flag = false;
                         }
                     }
                     // console.log(details);
@@ -83,7 +84,7 @@ bot.on('message', (msg) => {
                         if (centerNames != '') {
                             var reply = sendMail({ email, msg: details })
                             reply.then((data) => {
-                                bot.sendMessage(chatId, `Please Check you mail ${email} or visit ${data} \r\n ${details}`);
+                                bot.sendMessage(chatId, `Please visit ${data} \r\n ${details}`);
                             })
                         } else {
                             bot.sendMessage(chatId, "Currently there are no centers available");
