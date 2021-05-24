@@ -140,9 +140,9 @@ const checkForSLots = () => {
                         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36',
                     }
                 }, (res) => {
-                    res.data
+                    console.log(res);
                 }).then((response) => {
-                    if (response.data.centers.length == 0) {
+                    if (!response.data.centers) {
                         // bot.sendMessage(chatId, "No Centers Available");
                     } else {
                         var centerNames = "";
@@ -174,7 +174,6 @@ const checkForSLots = () => {
                             }
                         }
                         if (details == '') {
-
                             // details += centerNames + "\r\n No Vaccinations available";
                             // bot.sendMessage(chatId, details);
                         } else {
@@ -198,13 +197,13 @@ const checkForSLots = () => {
         }
     });
 }
-
+checkForSLots();
 //helpers functions
 
-cron.schedule('*/45 * * * *', () => {
-    console.log('running a task every 45 minutes');
-    checkForSLots();
-});
+// cron.schedule('*/45 * * * *', () => {
+//     console.log('running a task every 45 minutes');
+//     checkForSLots();
+// });
 
 const isNumber = (n) => {
     return /^-?[\d.]+(?:e-?\d+)?$/.test(n);
